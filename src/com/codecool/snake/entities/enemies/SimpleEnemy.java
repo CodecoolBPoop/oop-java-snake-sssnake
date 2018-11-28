@@ -8,6 +8,7 @@ import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import java.util.Random;
 
+import com.sun.javafx.geom.Vec2d;
 import javafx.geometry.Point2D;
 
 
@@ -17,12 +18,23 @@ public class SimpleEnemy extends Enemy implements Animatable, Interactable {
     private Point2D heading;
     private static Random rnd = new Random();
 
-    public SimpleEnemy() {
+    public SimpleEnemy(SnakeHead head) {
         super(10);
 
+        double spawnPointX = rnd.nextDouble() * Globals.WINDOW_WIDTH;
+        double spawnPointY = rnd.nextDouble() * Globals.WINDOW_HEIGHT;
+        Vec2d spawnPoint = new Vec2d(spawnPointX, spawnPointY);
+
+
+        while(spawnPoint.distance(head.getPosition()) < 150){
+             spawnPointX = rnd.nextDouble() * Globals.WINDOW_WIDTH;
+             spawnPointY = rnd.nextDouble() * Globals.WINDOW_HEIGHT;
+             spawnPoint = new Vec2d(spawnPointX, spawnPointY);
+        }
+
         setImage(Globals.getInstance().getImage("SimpleEnemy"));
-        setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
-        setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
+        setX(spawnPointX);
+        setY(spawnPointY);
 
         double direction = rnd.nextDouble() * 360;
         setRotate(direction);
