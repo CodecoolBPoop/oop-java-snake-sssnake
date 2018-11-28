@@ -3,6 +3,7 @@ package com.codecool.snake;
 import com.codecool.snake.entities.enemies.SecondEnemy;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.enemies.ThirdEnemy;
+import com.codecool.snake.entities.health.Health;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
@@ -11,8 +12,7 @@ import com.sun.javafx.geom.Vec2d;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
-import java.lang.reflect.Constructor;
-
+import java.awt.*;
 
 public class Game extends Pane {
     private Snake snake = null;
@@ -36,6 +36,7 @@ public class Game extends Pane {
         Globals.getInstance().setGameLoop(gameLoop);
         gameTimer.setup(gameLoop::step);
         gameTimer.play();
+
     }
 
     public void start() {
