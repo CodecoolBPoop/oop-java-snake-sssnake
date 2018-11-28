@@ -13,14 +13,19 @@ import javafx.scene.layout.Pane;
 public class Game extends Pane {
     private Snake snake = null;
     private GameTimer gameTimer = new GameTimer();
+    private static boolean multiplayer = false;
 
-
-    public Game() {
+    public Game(boolean multi) {
         Globals.getInstance().game = this;
         Globals.getInstance().display = new Display(this);
         Globals.getInstance().setupResources();
 
         init();
+        if (multi){
+            this.multiplayer = true;
+        }else{
+            this.multiplayer = false;
+        }
     }
 
     public void init() {
