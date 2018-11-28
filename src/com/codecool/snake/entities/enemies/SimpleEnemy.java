@@ -17,10 +17,12 @@ public class SimpleEnemy extends Enemy implements Animatable, Interactable {
     Point2D heading;
     static Random rnd = new Random();
 
-
-
     public SimpleEnemy() {
-        super(10);
+        this(10);
+    }
+
+    public SimpleEnemy(int damage) {
+        super(damage);
 
         setImage(Globals.getInstance().getImage("SimpleEnemy"));
         setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);

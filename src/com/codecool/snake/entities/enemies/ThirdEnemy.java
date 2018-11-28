@@ -5,6 +5,7 @@ import com.codecool.snake.Utils;
 
 public class ThirdEnemy extends SimpleEnemy {
     public ThirdEnemy() {
+        super(5);
 
         setImage(Globals.getInstance().getImage("ThirdEnemy"));
         setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
@@ -13,7 +14,7 @@ public class ThirdEnemy extends SimpleEnemy {
         double direction = rnd.nextDouble() * 360;
         setRotate(direction);
 
-        int speed = 3;
+        int speed = 2;
         heading = Utils.directionToVector(direction, speed);
     }
 
