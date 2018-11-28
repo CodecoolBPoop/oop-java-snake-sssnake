@@ -12,7 +12,7 @@ import javafx.scene.layout.Pane;
 
 public class Game extends Pane {
     private Snake snake = null;
-    private Snake snake1 = null;
+    private Snake snake2 = null;
     private GameTimer gameTimer = new GameTimer();
     private static boolean multiplayer = false;
 
@@ -31,7 +31,7 @@ public class Game extends Pane {
         spawnEnemies(4);
         spawnPowerUps(4);
 
-        GameLoop gameLoop = new GameLoop(snake,snake1);
+        GameLoop gameLoop = new GameLoop(snake,snake2);
         Globals.getInstance().setGameLoop(gameLoop);
         gameTimer.setup(gameLoop::step);
         gameTimer.play();
@@ -44,10 +44,10 @@ public class Game extends Pane {
 
     private void spawnSnake() {
         if(multiplayer) {
-            snake = new Snake(new Vec2d(500, 500));
-            snake1 = new Snake(new Vec2d(250,250));
+            snake = new Snake(new Vec2d(500, 500),1);
+            snake2 = new Snake(new Vec2d(250,250),2);
         }else{
-            snake = new Snake(new Vec2d(500, 500));
+            snake = new Snake(new Vec2d(500, 500),1);
         }
     }
 

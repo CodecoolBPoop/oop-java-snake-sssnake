@@ -11,9 +11,10 @@ import javafx.scene.input.KeyCode;
 
 
 public class Snake implements Animatable {
-    private static final float speed = 2;
+    private static final float speed = 3;
     private int health = 100;
-
+    private KeyCode left;
+    private KeyCode right;
     public SnakeHead getHead() {
         return head;
     }
@@ -22,10 +23,16 @@ public class Snake implements Animatable {
     private DelayedModificationList<GameEntity> body;
 
 
-    public Snake(Vec2d position) {
+    public Snake(Vec2d position, int snakeNumber) {
         head = new SnakeHead(this, position);
         body = new DelayedModificationList<>();
-
+        if (snakeNumber > 1){
+            this.left = KeyCode.A;
+            this.right = KeyCode.D;
+        } else{
+            this.left = KeyCode.LEFT;
+            this.right = KeyCode.RIGHT;
+        }
         addPart(4);
     }
 
@@ -41,8 +48,8 @@ public class Snake implements Animatable {
 
     private SnakeControl getUserInput() {
         SnakeControl turnDir = SnakeControl.INVALID;
-        if(InputHandler.getInstance().isKeyPressed(KeyCode.LEFT)) turnDir = SnakeControl.TURN_LEFT;
-        if(InputHandler.getInstance().isKeyPressed(KeyCode.RIGHT)) turnDir = SnakeControl.TURN_RIGHT;
+        if(InputHandler.getInstance().isKeyPressed(left)) turnDir = SnakeControl.TURN_LEFT;
+        if(InputHandler.getInstance().isKeyPressed(right)) turnDir = SnakeControl.TURN_RIGHT;
         return turnDir;
     }
 
