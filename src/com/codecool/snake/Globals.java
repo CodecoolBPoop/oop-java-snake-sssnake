@@ -12,7 +12,7 @@ public class Globals {
 
 
     // D: pokemon enemies
-    public String[] ENEMIES = {"pikachu.png", "bullbasaur.png", "charmander.png", "squirtle.png" };
+   // public String[] ENEMIES = {"pikachu.png", "bullbasaur.png", "charmander.png", "squirtle.png" };
 
     public static final double WINDOW_WIDTH = 1000;
     public static final double WINDOW_HEIGHT = 700;
@@ -33,19 +33,21 @@ public class Globals {
         this.gameLoop = gameLoop;
     }
 
-    // D: get random enemies picture
+   /* // D: get random enemies picture
     public String getRandomEnemyImage() {
         Random random = new Random();
         String randomEnemy = ENEMIES[random.nextInt(ENEMIES.length)];
         return randomEnemy;
-    }
+    }*/
 
     public void setupResources() {
         resources = new Resources();
         resources.addImage("SnakeHead", new Image("caterpie.png"));
         resources.addImage("SnakeBody", new Image("snake_body.png"));
-        resources.addImage("SimpleEnemy", new Image(getRandomEnemyImage()));
-        resources.addImage("PowerUpBerry", new Image("pokeball.png"));
+        resources.addImage("SimpleEnemy", new Image("pikachu.png"));
+        resources.addImage("SecondEnemy", new Image("bullbasaur.png"));
+        resources.addImage("ThirdEnemy", new Image("squirtle.png"));
+        resources.addImage("PowerUpBerry", new Image("hyper-potion.png"));
     }
 
     public Image getImage(String name) { return resources.getImage(name); }

@@ -11,7 +11,8 @@ import javafx.scene.input.KeyCode;
 
 
 public class Snake implements Animatable {
-    private static final float speed = 2;
+    private static final float speed = 3;
+
     private int health = 100;
 
     public SnakeHead getHead() {
@@ -19,7 +20,16 @@ public class Snake implements Animatable {
     }
 
     private SnakeHead head;
+
     private DelayedModificationList<GameEntity> body;
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
 
 
     public Snake(Vec2d position) {
@@ -59,6 +69,10 @@ public class Snake implements Animatable {
 
     public void changeHealth(int diff) {
         health += diff;
+    }
+
+    public void decreaseHealth(int damage) {
+        health -= damage;
     }
 
     private void checkForGameOverConditions() {

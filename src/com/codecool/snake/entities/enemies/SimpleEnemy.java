@@ -1,5 +1,6 @@
 package com.codecool.snake.entities.enemies;
 
+import com.codecool.snake.Game;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
@@ -14,12 +15,15 @@ import javafx.geometry.Point2D;
 
 
 public class SimpleEnemy extends Enemy implements Animatable, Interactable {
+    Point2D heading;
+    static Random rnd = new Random();
 
-    private Point2D heading;
-    private static Random rnd = new Random();
+    public SimpleEnemy() {
+        this(10);
+    }
 
-    public SimpleEnemy(SnakeHead head) {
-        super(10);
+    public SimpleEnemy(int damage,SnakeHead head) {
+        super(damage);
 
         double spawnPointX = rnd.nextDouble() * Globals.WINDOW_WIDTH;
         double spawnPointY = rnd.nextDouble() * Globals.WINDOW_HEIGHT;
@@ -47,6 +51,8 @@ public class SimpleEnemy extends Enemy implements Animatable, Interactable {
     public void step() {
         if (isOutOfBounds()) {
             destroy();
+
+            new SimpleEnemy();
         }
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
