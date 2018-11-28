@@ -12,8 +12,10 @@ import javafx.geometry.Point2D;
 
 
 public class SnakeHead extends GameEntity implements Interactable {
-    private static final float turnRate = 2;
+    private static final float turnRate = 4;
     private Snake snake;
+
+
 
     public SnakeHead(Snake snake, Vec2d position) {
         this.snake = snake;

@@ -44,7 +44,7 @@ public class Game extends Pane {
     }
 
     private void spawnEnemies(int numberOfEnemies) {
-        for(int i = 0; i < numberOfEnemies; ++i) new SimpleEnemy();
+        for(int i = 0; i < numberOfEnemies; ++i) new SimpleEnemy(snake.getHead());
     }
 
     private void spawnPowerUps(int numberOfPowerUps) {
