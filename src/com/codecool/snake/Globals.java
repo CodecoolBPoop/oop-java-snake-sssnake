@@ -12,7 +12,7 @@ public class Globals {
 
 
     // D: pokemon enemies
-    public String[] ENEMIES = {"pikachu.png", "bullbasaur.png", "charmander.png", "squirtle.png" };
+    public String[] ENEMIES = {"pikachu.png", "bullbasaur.png", "charmander.png", "squirtle.png"};
 
     public static final double WINDOW_WIDTH = 1000;
     public static final double WINDOW_HEIGHT = 700;
@@ -25,7 +25,7 @@ public class Globals {
 
 
     public static Globals getInstance() {
-        if(instance == null) instance = new Globals();
+        if (instance == null) instance = new Globals();
         return instance;
     }
 
@@ -48,11 +48,17 @@ public class Globals {
         resources.addImage("PowerUpBerry", new Image("pokeball.png"));
     }
 
-    public Image getImage(String name) { return resources.getImage(name); }
+    public Image getImage(String name) {
+        return resources.getImage(name);
+    }
 
-    public void startGame() { gameLoop.start(); }
+    public void startGame() {
+        gameLoop.start();
+    }
 
-    public void stopGame() { gameLoop.stop(); }
+    public void stopGame() {
+        gameLoop.stop();
+    }
 
     private Globals() {
         // singleton needs the class to have private constructor

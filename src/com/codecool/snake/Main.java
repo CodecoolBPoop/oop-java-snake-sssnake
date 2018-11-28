@@ -22,17 +22,17 @@ public class Main extends Application {
         multiplayerAlert.setContentText("Do you want to play with your buddy?");
         ButtonType yes = new ButtonType("Yes");
         ButtonType no = new ButtonType("No");
-        multiplayerAlert.getButtonTypes().setAll(yes,no);
+        multiplayerAlert.getButtonTypes().setAll(yes, no);
         Optional<ButtonType> result = multiplayerAlert.showAndWait();
         Scene mainScene;
         Game game;
-        if(result.get() == yes){
+        if (result.get() == yes) {
             System.out.println("YES");
             game = new Game(true);
             mainScene = new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT);
 
 
-        }else{
+        } else {
             System.out.println("No");
             game = new Game(false);
             mainScene = new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT);
