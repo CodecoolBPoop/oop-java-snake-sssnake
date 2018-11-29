@@ -44,22 +44,16 @@ public class SnakeHead extends GameEntity implements Interactable {
     @Override
     public void apply(GameEntity entity) {
         if(entity instanceof Enemy){
-            System.out.println(getMessage());
             snake.decreaseHealth(((Enemy) entity).getDamage());
             decreaseHealthBar(entity);
-            System.out.println(snake.getHealth());
         }
         if(entity instanceof SimplePowerUp){
-            System.out.println(getMessage());
             snake.addPart(1);
             snake.changeHealth(((SimplePowerUp) entity).getHealthPotionPoints());
             increaseHealthBar(entity);
-            System.out.println(snake.getHealth());
         }
         if(entity instanceof SpeedPowerUp){
-            System.out.println(getMessage());
             snake.setSpeed(snake.getSpeed() + SpeedPowerUp.getPlusSpeed());
-            System.out.println(snake.getHealth());
         }
     }
 
@@ -75,18 +69,16 @@ public class SnakeHead extends GameEntity implements Interactable {
         }
         currentHealth = newHealth;
         newHealth = " ";
-        System.out.println("Snake number"+ snake.getSnakeNumber() +"=" + currentHealth);
+        System.out.println("Snake number"+ snake.getSnakeNumber() +":" + currentHealth);
     }
 
     public void increaseHealthBar(GameEntity entity) {
-        System.out.println("Snake number"+snake.getSnakeNumber() + "health before update" + currentHealth.length());
         for(int i = 1; i< currentHealth.length() + 1; i++) {
             newHealth += "*";
         }
         currentHealth = newHealth;
         newHealth = " ";
-        System.out.println("Snake number"+snake.getSnakeNumber() +"health after update" + currentHealth.length());
-        System.out.println(currentHealth);
+        System.out.println("Snake number"+snake.getSnakeNumber() + ":" + currentHealth);
 
     }
 }
