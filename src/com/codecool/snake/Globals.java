@@ -34,7 +34,6 @@ public class Globals {
     }
 
 
-
     public void setupResources() {
         resources = new Resources();
         resources.addImage("SnakeHead", new Image("caterpie.png"));
