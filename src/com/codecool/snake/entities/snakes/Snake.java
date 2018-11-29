@@ -47,6 +47,10 @@ public class Snake implements Animatable {
     }
 
 
+    public DelayedModificationList<GameEntity> getBody() {
+        return body;
+    }
+
     public Snake(Vec2d position, int snakeNumber) {
         head = new SnakeHead(this, position);
         body = new DelayedModificationList<>();
@@ -108,13 +112,22 @@ public class Snake implements Animatable {
                 bodypart.destroy();
 
             }
+            if(snakeNumber == 1){
+                Globals.getInstance().gameLoop.setSnake(null);
+            }else{
+                Globals.getInstance().gameLoop.setSnake2(null);
+            }
+            if(Globals.getInstance().gameLoop.getSnake()==null && Globals.getInstance().gameLoop.getSnake2() == null){
+                Globals.getInstance().game.gameOver();
+            }
+
 
         }
     }
 
     private void updateSnakeBodyHistory() {
         GameEntity prev = head;
-        for(GameEntity currentPart : body.getList()) {
+        for (GameEntity currentPart : body.getList()) {
             currentPart.setPosition(prev.getPosition());
             prev = currentPart;
         }
@@ -123,7 +136,7 @@ public class Snake implements Animatable {
     private GameEntity getLastPart() {
         GameEntity result = body.getLast();
 
-        if(result != null) return result;
+        if (result != null) return result;
         return head;
     }
 }

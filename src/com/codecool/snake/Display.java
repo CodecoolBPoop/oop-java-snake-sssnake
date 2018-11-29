@@ -1,6 +1,7 @@
 package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
+
 import java.util.List;
 
 import javafx.scene.layout.Pane;
@@ -40,5 +41,12 @@ public class Display {
     public void clear() {
         displayPane.getChildren().clear();
         gameObjects.clear();
+    }
+
+    public void restart() {
+        Globals.getInstance().stopGame();
+        clear();
+        Globals.getInstance().game.init();
+        Globals.getInstance().game.start();
     }
 }
