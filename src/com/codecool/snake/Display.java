@@ -41,4 +41,11 @@ public class Display {
         displayPane.getChildren().clear();
         gameObjects.clear();
     }
+
+    public void restart() {
+        Globals.getInstance().stopGame();
+        clear();
+        Globals.getInstance().game.init();
+        Globals.getInstance().game.start();
+    }
 }
