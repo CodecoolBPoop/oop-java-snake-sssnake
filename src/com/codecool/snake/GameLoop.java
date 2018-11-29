@@ -88,11 +88,14 @@ public class GameLoop {
     }
 
     private void slowSnake(int loopCounter) {
-        if(loopCounter % FRAME == 0 && snake.getSpeed() > 2) {
-            snake.setSpeed(2);
-        }
-        if(loopCounter % FRAME == 0 && snake2.getSpeed() > 2) {
-            snake2.setSpeed(2);
+        if(snake != null) {
+            if (loopCounter % FRAME == 0 && snake.getSpeed() > 2) {
+                snake.setSpeed(2);
+            }
+        }else if(snake2 != null) {
+            if (loopCounter % FRAME == 0 && snake2.getSpeed() > 2) {
+                snake2.setSpeed(2);
+            }
         }
 
     }
