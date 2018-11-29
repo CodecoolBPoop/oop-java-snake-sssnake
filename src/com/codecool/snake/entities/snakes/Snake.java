@@ -12,15 +12,30 @@ import javafx.scene.input.KeyCode;
 
 
 public class Snake implements Animatable {
-    private static final float speed = 2;
+    private static float speed = 2;
     private int health = 100;
     private KeyCode left;
     private KeyCode right;
+
+    public int getSnakeNumber() {
+        return snakeNumber;
+    }
+
+    private int snakeNumber;
+    public float getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(float speed) {
+        Snake.speed = speed;
+    }
+
     public SnakeHead getHead() {
         return head;
     }
 
     private SnakeHead head;
+
     private DelayedModificationList<GameEntity> body;
 
     public int getHealth() {
@@ -36,9 +51,11 @@ public class Snake implements Animatable {
         head = new SnakeHead(this, position);
         body = new DelayedModificationList<>();
         if (snakeNumber > 1){
+            this.snakeNumber = 2;
             this.left = KeyCode.A;
             this.right = KeyCode.D;
         } else{
+            this.snakeNumber = 1;
             this.left = KeyCode.LEFT;
             this.right = KeyCode.RIGHT;
         }
