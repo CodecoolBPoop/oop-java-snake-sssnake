@@ -11,7 +11,25 @@ import java.util.Random;
 public class GameLoop {
     static final int FRAME = 165;
     private int loopCounter = 0;
+
+    public Snake getSnake() {
+        return snake;
+    }
+
+    public void setSnake(Snake snake) {
+        this.snake = snake;
+    }
+
     private Snake snake;
+
+    public Snake getSnake2() {
+        return snake2;
+    }
+
+    public void setSnake2(Snake snake2) {
+        this.snake2 = snake2;
+    }
+
     private Snake snake2;
     private boolean running = false;
     private Random rnd = new Random();
@@ -31,7 +49,9 @@ public class GameLoop {
 
     public void step() {
         if(running) {
-            snake.step();
+            if(snake != null) {
+                snake.step();
+            }
             if (snake2 != null) {
                 snake2.step();
             }
@@ -71,6 +91,10 @@ public class GameLoop {
         if(loopCounter % FRAME == 0 && snake.getSpeed() > 2) {
             snake.setSpeed(2);
         }
+        if(loopCounter % FRAME == 0 && snake2.getSpeed() > 2) {
+            snake2.setSpeed(2);
+        }
+
     }
 
     private void checkCollisions() {
