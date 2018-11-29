@@ -75,17 +75,17 @@ public class SnakeHead extends GameEntity implements Interactable {
         }
         currentHealth = newHealth;
         newHealth = " ";
-        System.out.println(currentHealth);
+        System.out.println("Snake number"+ snake.getSnakeNumber() +"=" + currentHealth);
     }
 
     public void increaseHealthBar(GameEntity entity) {
-        System.out.println("health before update" + currentHealth.length());
+        System.out.println("Snake number"+snake.getSnakeNumber() + "health before update" + currentHealth.length());
         for(int i = 1; i< currentHealth.length() + 1; i++) {
             newHealth += "*";
         }
         currentHealth = newHealth;
         newHealth = " ";
-        System.out.println("health after update" + currentHealth.length());
+        System.out.println("Snake number"+snake.getSnakeNumber() +"health after update" + currentHealth.length());
         System.out.println(currentHealth);
 
     }
