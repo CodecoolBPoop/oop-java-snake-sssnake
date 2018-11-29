@@ -7,11 +7,11 @@ import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
+
 import java.util.Random;
 
 import com.sun.javafx.geom.Vec2d;
 import javafx.geometry.Point2D;
-
 
 
 public class SimpleEnemy extends Enemy implements Animatable, Interactable {
@@ -27,10 +27,10 @@ public class SimpleEnemy extends Enemy implements Animatable, Interactable {
         Vec2d spawnPoint = new Vec2d(spawnPointX, spawnPointY);
 
 
-        while(spawnPoint.distance(head.getPosition()) < 150){
-             spawnPointX = rnd.nextDouble() * Globals.WINDOW_WIDTH;
-             spawnPointY = rnd.nextDouble() * Globals.WINDOW_HEIGHT;
-             spawnPoint = new Vec2d(spawnPointX, spawnPointY);
+        while (spawnPoint.distance(head.getPosition()) < 150) {
+            spawnPointX = rnd.nextDouble() * Globals.WINDOW_WIDTH;
+            spawnPointY = rnd.nextDouble() * Globals.WINDOW_HEIGHT;
+            spawnPoint = new Vec2d(spawnPointX, spawnPointY);
         }
 
         setImage(Globals.getInstance().getImage("SimpleEnemy"));
@@ -56,7 +56,7 @@ public class SimpleEnemy extends Enemy implements Animatable, Interactable {
 
     @Override
     public void apply(GameEntity entity) {
-        if(entity instanceof SnakeHead){
+        if (entity instanceof SnakeHead) {
             System.out.println(getMessage());
             destroy();
         }

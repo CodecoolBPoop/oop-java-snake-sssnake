@@ -45,11 +45,17 @@ public class Globals {
         resources.addImage("SpeedUpPotion", new Image("tornado.png"));
     }
 
-    public Image getImage(String name) { return resources.getImage(name); }
+    public Image getImage(String name) {
+        return resources.getImage(name);
+    }
 
-    public void startGame() { gameLoop.start(); }
+    public void startGame() {
+        gameLoop.start();
+    }
 
-    public void stopGame() { gameLoop.stop(); }
+    public void stopGame() {
+        gameLoop.stop();
+    }
 
     private Globals() {
         // singleton needs the class to have private constructor

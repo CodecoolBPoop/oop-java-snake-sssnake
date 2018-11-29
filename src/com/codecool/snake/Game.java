@@ -17,14 +17,16 @@ import java.awt.*;
 
 public class Game extends Pane {
     private Snake snake = null;
+    private Snake snake2 = null;
     private GameTimer gameTimer = new GameTimer();
+    private static boolean multiplayer = false;
 
-
-    public Game() {
+    public Game(boolean multi) {
         Globals.getInstance().game = this;
         Globals.getInstance().display = new Display(this);
         Globals.getInstance().setupResources();
 
+        multiplayer = multi;
         init();
     }
 
@@ -33,7 +35,7 @@ public class Game extends Pane {
         spawnEnemies(3);
         spawnPowerUps(4);
 
-        GameLoop gameLoop = new GameLoop(snake);
+        GameLoop gameLoop = new GameLoop(snake,snake2);
         Globals.getInstance().setGameLoop(gameLoop);
         gameTimer.setup(gameLoop::step);
         gameTimer.play();
@@ -45,7 +47,12 @@ public class Game extends Pane {
     }
 
     private void spawnSnake() {
-        snake = new Snake(new Vec2d(500, 500));
+        if(multiplayer) {
+            snake = new Snake(new Vec2d(500, 500),1);
+            snake2 = new Snake(new Vec2d(250,250),2);
+        }else{
+            snake = new Snake(new Vec2d(500, 500),1);
+        }
     }
 
     public void spawnEnemies(int numberOfEnemies) {

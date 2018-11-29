@@ -3,7 +3,7 @@ package com.codecool.snake.entities.enemies;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.snakes.SnakeHead;
 
-public abstract class Enemy extends GameEntity{
+public abstract class Enemy extends GameEntity {
     private final int damage;
     private SnakeHead snakeHead;
 

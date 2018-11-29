@@ -12,10 +12,14 @@ public class GameLoop {
     static final int FRAME = 165;
     private int loopCounter = 0;
     private Snake snake;
+    private Snake snake2;
     private boolean running = false;
     private Random rnd = new Random();
 
-    public GameLoop(Snake snake) { this.snake = snake; }
+    public GameLoop(Snake snake, Snake snake1) {
+        this.snake = snake;
+        this.snake2 = snake1;
+    }
 
     public void start() {
         running = true;
@@ -28,17 +32,20 @@ public class GameLoop {
     public void step() {
         if(running) {
             snake.step();
+            if (snake2 != null) {
+                snake2.step();
+            }
             spawnEnemies(loopCounter);
             spawnPowerUps();
             slowSnake(loopCounter);
             stepAnimatableObjects();
             checkCollisions();
+
         }
 
         Globals.getInstance().display.frameFinished();
         loopCounter += 1;
     }
-
     private void stepAnimatableObjects() {
         for (GameEntity gameObject : Globals.getInstance().display.getObjectList()) {
             if (gameObject instanceof Animatable) {
