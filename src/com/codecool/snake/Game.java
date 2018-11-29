@@ -80,7 +80,10 @@ public class Game extends Pane {
 
     public void gameOver() {
         int highScoreSnake = snake.getBody().getList().size();
-        int highScoreSnake2 = snake2.getBody().getList().size();
+        int highScoreSnake2 = 0;
+        if(multiplayer) {
+            highScoreSnake2 = snake2.getBody().getList().size();
+        }
         Globals.getInstance().stopGame();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Game over! You died!");
