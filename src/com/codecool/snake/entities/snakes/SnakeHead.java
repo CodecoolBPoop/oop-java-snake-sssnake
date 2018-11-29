@@ -7,13 +7,15 @@ import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.enemies.Enemy;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
 
+import com.codecool.snake.entities.powerups.SpeedPowerUp;
 import com.sun.javafx.geom.Vec2d;
 import javafx.geometry.Point2D;
 
 
 public class SnakeHead extends GameEntity implements Interactable {
-    private static final float turnRate = 2;
+    private static final float turnRate = 4;
     private Snake snake;
+    private String HealthBar = "********************";
 
     public SnakeHead(Snake snake, Vec2d position) {
         this.snake = snake;
@@ -43,12 +45,18 @@ public class SnakeHead extends GameEntity implements Interactable {
         if(entity instanceof Enemy){
             System.out.println(getMessage());
             snake.decreaseHealth(((Enemy) entity).getDamage());
+
             System.out.println(snake.getHealth());
         }
         if(entity instanceof SimplePowerUp){
             System.out.println(getMessage());
-            snake.addPart(4);
+            snake.addPart(1);
             snake.changeHealth(((SimplePowerUp) entity).getHealthPotionPoints());
+            System.out.println(snake.getHealth());
+        }
+        if(entity instanceof SpeedPowerUp){
+            System.out.println(getMessage());
+            snake.setSpeed(snake.getSpeed() + SpeedPowerUp.getPlusSpeed());
             System.out.println(snake.getHealth());
         }
     }
