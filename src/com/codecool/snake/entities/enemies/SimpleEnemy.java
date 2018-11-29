@@ -18,12 +18,9 @@ public class SimpleEnemy extends Enemy implements Animatable, Interactable {
     Point2D heading;
     static Random rnd = new Random();
 
-    public SimpleEnemy() {
-        this(10);
-    }
 
-    public SimpleEnemy(int damage,SnakeHead head) {
-        super(damage);
+    public SimpleEnemy(SnakeHead head) {
+        super(10, head);
 
         double spawnPointX = rnd.nextDouble() * Globals.WINDOW_WIDTH;
         double spawnPointY = rnd.nextDouble() * Globals.WINDOW_HEIGHT;
@@ -43,7 +40,7 @@ public class SimpleEnemy extends Enemy implements Animatable, Interactable {
         double direction = rnd.nextDouble() * 360;
         setRotate(direction);
 
-        int speed = 1;
+        int speed = 3;
         heading = Utils.directionToVector(direction, speed);
     }
 
@@ -52,7 +49,6 @@ public class SimpleEnemy extends Enemy implements Animatable, Interactable {
         if (isOutOfBounds()) {
             destroy();
 
-            new SimpleEnemy();
         }
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
