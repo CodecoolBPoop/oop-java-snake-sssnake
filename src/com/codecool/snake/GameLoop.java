@@ -6,6 +6,7 @@ import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.Snake;
 
 import java.util.List;
+import java.util.Random;
 
 public class GameLoop {
     static final int FRAME = 165;
@@ -13,6 +14,7 @@ public class GameLoop {
     private Snake snake;
     private Snake snake2;
     private boolean running = false;
+    private Random rnd = new Random();
 
     public GameLoop(Snake snake, Snake snake1) {
         this.snake = snake;
@@ -34,6 +36,8 @@ public class GameLoop {
                 snake2.step();
             }
             spawnEnemies(loopCounter);
+            spawnPowerUps();
+            slowSnake(loopCounter);
             stepAnimatableObjects();
             checkCollisions();
 
@@ -53,6 +57,19 @@ public class GameLoop {
     private void spawnEnemies(int loopCounter) {
         if (loopCounter % FRAME == 0) {
             Globals.getInstance().game.spawnEnemies(3);
+        }
+
+    }
+
+    private void spawnPowerUps() {
+        if (rnd.nextInt(10000) < 100) {
+            Globals.getInstance().game.spawnPowerUps(1);
+        }
+    }
+
+    private void slowSnake(int loopCounter) {
+        if(loopCounter % FRAME == 0 && snake.getSpeed() > 2) {
+            snake.setSpeed(2);
         }
     }
 

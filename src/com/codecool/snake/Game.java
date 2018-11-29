@@ -5,15 +5,12 @@ import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.enemies.ThirdEnemy;
 
 import com.codecool.snake.entities.powerups.SimplePowerUp;
+import com.codecool.snake.entities.powerups.SpeedPowerUp;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
 
 import com.sun.javafx.geom.Vec2d;
-import javafx.application.Platform;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 
 import java.awt.*;
@@ -59,42 +56,21 @@ public class Game extends Pane {
     }
 
     public void spawnEnemies(int numberOfEnemies) {
-        for (int i = 0; i < numberOfEnemies; ++i) new SimpleEnemy(snake.getHead());
-        for (int i = 0; i < numberOfEnemies; ++i) new SecondEnemy(snake.getHead());
-        for (int i = 0; i < numberOfEnemies; ++i) new ThirdEnemy(snake.getHead());
+        for(int i = 0; i < numberOfEnemies; ++i) new SimpleEnemy(snake.getHead());
+        for(int i = 0; i < numberOfEnemies; ++i) new SecondEnemy(snake.getHead());
+        for(int i = 0; i < numberOfEnemies; ++i) new ThirdEnemy(snake.getHead());
 
     }
 
-    private void spawnPowerUps(int numberOfPowerUps) {
-        for (int i = 0; i < numberOfPowerUps; ++i) new SimplePowerUp();
+    public void spawnPowerUps(int numberOfPowerUps) {
+
+        for(int i = 0; i < numberOfPowerUps; ++i) new SimplePowerUp();
+        for(int i = 0; i < numberOfPowerUps; ++i) new SpeedPowerUp();
     }
 
     private void setupInputHandling() {
         Scene scene = getScene();
         scene.setOnKeyPressed(event -> InputHandler.getInstance().setKeyPressed(event.getCode()));
         scene.setOnKeyReleased(event -> InputHandler.getInstance().setKeyReleased(event.getCode()));
-    }
-
-    public void gameOver() {
-        int highScoreSnake = snake.getBody().getList().size();
-        Globals.getInstance().stopGame();
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Game over! You died!");
-        alert.setHeaderText("Look, your score is" + " " + highScoreSnake);
-
-        ButtonType buttonRestart = new ButtonType("Restart");
-        ButtonType buttonExit = new ButtonType("Exit", ButtonBar.ButtonData.CANCEL_CLOSE);
-
-        alert.getButtonTypes().setAll(buttonRestart, buttonExit);
-        alert.setOnHidden(e -> {
-            if (alert.getResult() == buttonRestart)
-                Globals.getInstance().display.restart();
-
-            if (alert.getResult() == buttonExit)
-                Platform.exit();
-        });
-        alert.show();
-
-
     }
 }

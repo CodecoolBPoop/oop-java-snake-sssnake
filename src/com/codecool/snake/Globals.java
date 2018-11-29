@@ -33,12 +33,6 @@ public class Globals {
         this.gameLoop = gameLoop;
     }
 
-   /* // D: get random enemies picture
-    public String getRandomEnemyImage() {
-        Random random = new Random();
-        String randomEnemy = ENEMIES[random.nextInt(ENEMIES.length)];
-        return randomEnemy;
-    }*/
 
     public void setupResources() {
         resources = new Resources();
@@ -47,7 +41,8 @@ public class Globals {
         resources.addImage("SimpleEnemy", new Image("pikachu.png"));
         resources.addImage("SecondEnemy", new Image("bullbasaur.png"));
         resources.addImage("ThirdEnemy", new Image("squirtle.png"));
-        resources.addImage("PowerUpBerry", new Image("hyper-potion.png"));
+        resources.addImage("HealthPotion", new Image("hyper-potion.png"));
+        resources.addImage("SpeedUpPotion", new Image("tornado.png"));
     }
 
     public Image getImage(String name) {
