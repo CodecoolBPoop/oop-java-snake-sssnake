@@ -8,6 +8,8 @@ import com.codecool.snake.entities.snakes.Snake;
 import java.util.List;
 
 public class GameLoop {
+    static final int FRAME = 165;
+    private int loopCounter = 0;
     private Snake snake;
     private boolean running = false;
 
@@ -24,15 +26,27 @@ public class GameLoop {
     public void step() {
         if(running) {
             snake.step();
-            for (GameEntity gameObject : Globals.getInstance().display.getObjectList()) {
-                if (gameObject instanceof Animatable) {
-                    ((Animatable) gameObject).step();
-                }
-            }
+            spawnEnemies(loopCounter);
+            stepAnimatableObjects();
             checkCollisions();
         }
 
         Globals.getInstance().display.frameFinished();
+        loopCounter += 1;
+    }
+
+    private void stepAnimatableObjects() {
+        for (GameEntity gameObject : Globals.getInstance().display.getObjectList()) {
+            if (gameObject instanceof Animatable) {
+                ((Animatable) gameObject).step();
+            }
+        }
+    }
+
+    private void spawnEnemies(int loopCounter) {
+        if (loopCounter % FRAME == 0) {
+            Globals.getInstance().game.spawnEnemies(3);
+        }
     }
 
     private void checkCollisions() {
